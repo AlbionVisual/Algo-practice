@@ -1,3 +1,5 @@
+from time import time
+from random import random
 from collections import deque
 
 class Stack():
@@ -9,15 +11,27 @@ class Stack():
         return len(self.items)
     
     def is_empty(self):
-        return bool(len(self))
+        return len(self) <= 0
 
     def push(self, item):
         self.items.append(item)
     
     def pop(self):
-        if len(self) <= 0: print("stack is empty")
-        return self.items.pop()
+        if self.is_empty(): return "stack is empty"
+        else: return self.items.pop()
     
     def peek(self):
-        if len(self) <= 0: print("stack is empty")
+        if self.is_empty(): return "stack is empty"
         else: return self.items[-1]
+
+if __name__ == '__main__':
+
+    start = time()
+    s1 = Stack()
+    for _ in range(100000):
+        s1.push(random())
+    
+    while not s1.is_empty():
+        s1.pop()
+    
+    print(time() - start, s1.peek())
