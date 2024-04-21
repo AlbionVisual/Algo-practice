@@ -18,6 +18,9 @@ class Queue():
         if self.is_empty(): return "queue is empty"
         else: return self.items.popleft()
     
+    def appendleft(self, item):
+        self.items.appendleft(item)
+    
     def peek(self):
         if self.is_empty(): return "queue is empty"
         else: return self.items[0]
