@@ -10,6 +10,7 @@ def findMin(queues):
     return ind
             
 
+# entries = ["cashdesks.py", 3, 8, 20]
 [N, C, T] = [int(i) for i in entries[1:4]]
 
 desks = [Queue() for _ in range(C)]
@@ -26,6 +27,6 @@ for _ in range(T):
 
     for desk in desks:
         men = desk.dequeue()
-        if type(men) != str and men > 0: desk.appendleft(men - 1)
+        if type(men) != str and men > 1: desk.appendleft(men - 1)
         
 print(res)
