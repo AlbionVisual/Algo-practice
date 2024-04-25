@@ -52,13 +52,17 @@ class MinHeap:
         self.sift_up(i)
         if self.items[i] == x: self.sift_down(i)
     
-    def sort(self):
+    def sort(self, rev = False):
+        
         k = len(self) - 1
         while k != 0:
             self.items[0], self.items[k] = self.items[k], self.items[0]
             self.sift_down(0, k - 1)
             k -= 1
-        return self.items
+        if rev: return self.items
+        else:
+            self.items.reverse()
+            return self.items
 
 
 
