@@ -1,7 +1,8 @@
 class MinHeap:
     
-    def __init__(self):
+    def __init__(self, arr = []):
         self.items = []
+        for i in arr: self.push(i)
     
     def __len__(self):
         return len(self.items)
@@ -33,12 +34,13 @@ class MinHeap:
             self.items[i], self.items[(i-1)//2] = self.items[(i-1)//2], self.items[i]
             i = (i-1)//2
 
-    def sift_down(self, i):
-        while (2*i + 1 < len(self) and self.items[i] > self.items[2*i + 1]) or (2*i + 2 < len(self) and self.items[i] > self.items[2*i + 2]):
-            if (2*i + 2 < len(self) and self.items[2*i + 2] > self.items[2*i + 1]):
+    def sift_down(self, i, k = ''):
+        ln = k + 1 if k != '' else len(self)
+        while (2*i + 1 < ln and self.items[i] > self.items[2*i + 1]) or (2*i + 2 < ln and self.items[i] > self.items[2*i + 2]):
+            if (2*i + 2 < ln and self.items[2*i + 2] > self.items[2*i + 1]):
                 self.items[i], self.items[2*i + 1] = self.items[2*i + 1], self.items[i]
                 i = 2*i + 1
-            elif (2*i + 2 < len(self)):
+            elif (2*i + 2 < ln):
                 self.items[i], self.items[2*i + 2] = self.items[2*i + 2], self.items[i]
                 i = 2*i + 2
             else:
@@ -49,21 +51,24 @@ class MinHeap:
         self.items[i] = x
         self.sift_up(i)
         if self.items[i] == x: self.sift_down(i)
+    
+    def sort(self):
+        k = len(self) - 1
+        while k != 0:
+            self.items[0], self.items[k] = self.items[k], self.items[0]
+            self.sift_down(0, k - 1)
+            k -= 1
+        return self.items
 
 
 
 # from random import randrange
 # if __name__ == '__main__':
 
-#     h1 = MinHeap()
-#     for _ in range(10):
-#         h1.push(randrange(1, 100))
-#     print(h1.get_data())
-#     i = randrange(10)
-#     x = randrange(1, 100)
-#     h1.update(i, x)
-#     print(f'{i} -> {x}')
-#     print(h1.get_data())
+#     h1 = MinHeap([randrange(1, 100) for _ in range(10)])
+    
+#     print("sorted heap:",h1.sort())
+
 #     while not h1.is_empty():
 #         print(h1.pop(), end = ' ')
     
