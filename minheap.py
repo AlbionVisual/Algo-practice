@@ -10,7 +10,7 @@ class MinHeap:
         return len(self) <= 0
 
     def peek(self):
-        if self.is_empty(): return "heap is empty"
+        if self.is_empty(): return 'heap is empty'
         else: return self.items[0]
     
     def push(self, item):
@@ -18,10 +18,12 @@ class MinHeap:
         self.sift_up(len(self) - 1)
 
     def pop(self):
-        self.items[0], self.items[-1] = self.items[-1], self.items[0]
-        popped = self.items.pop()
-        self.sift_down(0)
-        return popped
+        if len(self) != 0:
+            self.items[0], self.items[-1] = self.items[-1], self.items[0]
+            popped = self.items.pop()
+            self.sift_down(0)
+            return popped
+        else: return 'heap is empty'
 
     def get_data(self):
         return self.items
