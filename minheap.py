@@ -44,13 +44,11 @@ class MinHeap:
             else:
                 self.items[i], self.items[2*i + 1] = self.items[2*i + 1], self.items[i]
                 i = 2*i + 1
-    
+
     def update(self, i, x):
         self.items[i] = x
         self.sift_up(i)
         if self.items[i] == x: self.sift_down(i)
-
-
 
 # from random import randrange
 # if __name__ == '__main__':
@@ -58,12 +56,7 @@ class MinHeap:
 #     h1 = MinHeap()
 #     for _ in range(10):
 #         h1.push(randrange(1, 100))
-#     print(h1.get_data())
-#     i = randrange(10)
-#     x = randrange(1, 100)
-#     h1.update(i, x)
-#     print(f'{i} -> {x}')
-#     print(h1.get_data())
+    
 #     while not h1.is_empty():
 #         print(h1.pop(), end = ' ')
     
